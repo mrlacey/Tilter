@@ -1,0 +1,44 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="TilterDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mrlacey="clr-namespace:Mrlacey;assembly=Tilter"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <controls:Pivot Title="TILTER DEMO">
+            <controls:PivotItem Header="plain">
+                <Grid HorizontalAlignment="Center">
+                    <mrlacey:Tilter>
+                        <StackPanel>
+                            <TextBlock Text="Heading" Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                            <TextBlock Text="some details" />
+                        </StackPanel>
+                    </mrlacey:Tilter>
+                </Grid>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="tap">
+                <Grid>
+
+                </Grid>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="command">
+                <Grid>
+
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+</phone:PhoneApplicationPage>
