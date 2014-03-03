@@ -45,12 +45,26 @@ namespace Mrlacey
                 typeof(Tilter),
                 new PropertyMetadata(null, OnContentChanged));
 
+        public readonly DependencyProperty TapCommandProperty =
+    DependencyProperty.Register(
+        "TapCommand",
+        typeof(ICommand),
+        typeof(Tilter),
+        new PropertyMetadata(null));
+
+        public readonly DependencyProperty TapCommandParameterProperty =
+            DependencyProperty.Register(
+                "TapCommandParameter",
+                typeof(object),
+                typeof(Tilter),
+                new PropertyMetadata(null));
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Tilter"/> class.
         /// </summary>
         public Tilter()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         /// <summary>
@@ -63,12 +77,12 @@ namespace Mrlacey
         {
             get
             {
-                return (ICommand)GetValue(CommandProperty);
+                return (ICommand)this.GetValue(CommandProperty);
             }
 
             set
             {
-                SetValue(CommandProperty, value);
+                this.SetValue(CommandProperty, value);
             }
         }
 
@@ -82,13 +96,25 @@ namespace Mrlacey
         {
             get
             {
-                return GetValue(CommandParameterProperty);
+                return this.GetValue(CommandParameterProperty);
             }
 
             set
             {
-                SetValue(CommandParameterProperty, value);
+                this.SetValue(CommandParameterProperty, value);
             }
+        }
+
+        public ICommand TapCommand
+        {
+            get { return (ICommand)GetValue(this.TapCommandProperty); }
+            set { this.SetValue(this.TapCommandProperty, value); }
+        }
+
+        public object TapCommandParameter
+        {
+            get { return this.GetValue(this.TapCommandParameterProperty); }
+            set { this.SetValue(this.TapCommandParameterProperty, value); }
         }
 
         /// <summary>
@@ -99,12 +125,20 @@ namespace Mrlacey
         {
             get
             {
-                return (FrameworkElement)GetValue(ContentProperty);
+                return (FrameworkElement)this.GetValue(ContentProperty);
             }
 
             set
             {
-                SetValue(ContentProperty, value);
+                this.SetValue(ContentProperty, value);
+            }
+        }
+
+        public void ControlTapped(object sender, GestureEventArgs e)
+        {
+            if (this.TapCommand != null)
+            {
+                this.TapCommand.Execute(this.TapCommandParameter);
             }
         }
 
